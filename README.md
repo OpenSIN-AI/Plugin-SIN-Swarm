@@ -32,7 +32,7 @@ opencode
 - `swarm.forget` — forget local swarm mapping (sessions remain)
 - `swarm.max` — MAX mode: parallel editor tries in isolated git worktrees + selector picks winner (optional apply)
 - `swarm.jam` — collaborative run in the same worktree (no isolation)
-- `swarm.max` — MAX mode: parallel editor tries in isolated git worktrees + selector picks winner (optional apply)
+- `swarm.loop` — queue runner: read `.omoc-queue.json` and execute tasks via `swarm.jam` / `swarm.max`
 
 ## Side-by-side tmux UI
 
@@ -43,3 +43,46 @@ This repo ships a launcher:
 ```
 
 Requirements: `tmux`, `curl`, `jq`, `lsof`, and `opencode` on PATH.
+
+## Always side-by-side (direnv)
+
+If you want `opencode` to always start in the side-by-side tmux UI inside a project, use `direnv` to prepend that
+project's `bin/` to `PATH`, and ship a tiny `bin/opencode` wrapper that launches `bin/oc-swarm`.
+
+### One-time setup
+
+1) Install `direnv`:
+
+```bash
+brew install direnv
+```
+
+2) Enable the `direnv` hook once for your shell (example: zsh):
+
+```bash
+echo 'eval "$(direnv hook zsh)"' >> ~/.zshrc
+exec zsh
+```
+
+### Project setup (recommended)
+
+In your target project repo:
+
+```bash
+mkdir -p bin
+cp /path/to/opencode-omoc-swarm/bin/oc-swarm bin/oc-swarm
+cp /path/to/opencode-omoc-swarm/templates/bin/opencode bin/opencode
+cp /path/to/opencode-omoc-swarm/templates/.envrc .envrc
+chmod +x bin/oc-swarm bin/opencode
+direnv allow
+```
+
+Now `opencode` (without subcommands) will always open the side-by-side tmux UI.
+
+### Escape hatch
+
+```bash
+OMOC_NO_TMUX=1 opencode
+# or
+opencode --no-tmux
+```

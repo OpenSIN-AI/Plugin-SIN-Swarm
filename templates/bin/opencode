@@ -1,0 +1,60 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Project-local wrapper to make the default interactive OpenCode UX always "side-by-side" in tmux.
+# Intended to live in a target project repo at `bin/opencode`, with `bin/` prepended to PATH (e.g. via direnv).
+#
+# Requires the project to ship `bin/oc-swarm` (copy it from this repo).
+#
+# Escape hatch:
+#   - set `OMOC_NO_TMUX=1`, or
+#   - pass `--no-tmux` as the first argument
+
+if [ "${1:-}" = "--no-tmux" ]; then
+  shift
+  export OMOC_NO_TMUX=1
+fi
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PROJECT_ROOT="$(dirname "$SCRIPT_DIR")"
+
+find_real_opencode() {
+  local wrapper_path candidates
+  wrapper_path="${SCRIPT_DIR}/opencode"
+  candidates="$(which -a opencode 2>/dev/null || true)"
+  [ -z "${candidates}" ] && return 1
+  while IFS= read -r line; do
+    [ -z "${line}" ] && continue
+    if [ "${line}" != "${wrapper_path}" ]; then
+      echo "${line}"
+      return 0
+    fi
+  done <<< "${candidates}"
+  return 1
+}
+
+REAL_OPENCODE_BIN="${OPENCODE_REAL_BIN:-}"
+if [ -z "${REAL_OPENCODE_BIN}" ]; then
+  REAL_OPENCODE_BIN="$(find_real_opencode || true)"
+fi
+if [ -z "${REAL_OPENCODE_BIN}" ]; then
+  echo "Error: could not locate the real 'opencode' binary (set OPENCODE_REAL_BIN)." >&2
+  exit 1
+fi
+
+# Always tmux for interactive TUI start, but do NOT tmux-wrap utility subcommands.
+SUBCMD="${1:-}"
+case "${SUBCMD}" in
+  ""|".")
+    ;;
+  -h|--help|-v|--version|completion|acp|mcp|attach|run|debug|auth|agent|upgrade|uninstall|serve|web|models|stats|export|import|github|pr|session|db)
+    exec "${REAL_OPENCODE_BIN}" "$@"
+    ;;
+esac
+
+if [ "${OMOC_NO_TMUX:-}" = "1" ]; then
+  exec "${REAL_OPENCODE_BIN}" "$@"
+fi
+
+exec "${PROJECT_ROOT}/bin/oc-swarm"
+
