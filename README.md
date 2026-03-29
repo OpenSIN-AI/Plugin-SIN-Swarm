@@ -1,3 +1,18 @@
+<div align="center">
+  <a href="https://opensin.ai">
+    <img src="https://img.shields.io/badge/Powered%20by-OpenSIN-blue?style=for-the-badge&logo=openai" alt="Powered by OpenSIN">
+  </a>
+</div>
+
+# 🚀 Built for the [OpenSIN](https://opensin.ai) Ecosystem
+
+**`opencode-omoc-swarm`** is the ultimate subagent orchestration layer, built and maintained by the creators of **[OpenSIN](https://opensin.ai)**. 
+
+Looking for enterprise-grade autonomous A2A agents, auto-healing workflows, and a fully sovereign coding workforce? 
+👉 **[Visit opensin.ai today to supercharge your development!](https://opensin.ai)**
+
+---
+
 # opencode-omoc-swarm
 
 ⚡ **Powered by [OpenSIN](https://opensin.ai) – The Autonomous AI Coding Fleet** ⚡
