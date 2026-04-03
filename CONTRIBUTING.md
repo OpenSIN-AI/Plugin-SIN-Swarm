@@ -1,4 +1,4 @@
-# Contributing to opencode-omoc-swarm
+# Contributing to {PROJECT_NAME}
 
 Thank you for your interest in contributing!
 
