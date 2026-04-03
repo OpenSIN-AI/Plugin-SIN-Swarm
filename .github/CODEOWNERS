@@ -1,0 +1,20 @@
+# CODEOWNERS for OpenSIN-AI
+# These owners will be requested for review when someone opens a pull request
+# that changes one of these paths.
+
+# Default owners for everything in the repo
+* @OpenSIN-AI/core
+
+# Documentation
+*.md @OpenSIN-AI/docs
+
+# Infrastructure
+Dockerfile* @OpenSIN-AI/infra
+docker-compose*.yml @OpenSIN-AI/infra
+*.tf @OpenSIN-AI/infra
+
+# CI/CD
+.github/ @OpenSIN-AI/infra
+
+# Security
+SECURITY.md @OpenSIN-AI/security
