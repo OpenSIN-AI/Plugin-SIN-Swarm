@@ -1,0 +1,84 @@
+name: ✨ Feature Request
+description: Suggest a new feature or enhancement for OpenSIN
+title: "[FEATURE] "
+labels:
+  - enhancement
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for suggesting a feature! We love hearing ideas from our community.
+        Please check if this feature has already been requested.
+        
+  - type: checkboxes
+    id: preflight
+    attributes:
+      label: Preflight Checklist
+      options:
+        - label: I have searched existing requests and this feature hasn't been requested yet
+          required: true
+        - label: This is a single feature request (not multiple features)
+          required: true
+          
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem Statement
+      description: What problem are you trying to solve? Why do you need this feature?
+      placeholder: Describe the problem...
+    validations:
+      required: true
+      
+  - type: textarea
+    id: solution
+    attributes:
+      label: Proposed Solution
+      description: How would you like this to work? Describe the ideal user experience.
+      placeholder: Describe the solution...
+    validations:
+      required: true
+      
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority
+      options:
+        - Critical - Blocking my work
+        - High - Significant impact
+        - Medium - Would be helpful
+        - Low - Nice to have
+    validations:
+      required: true
+      
+  - type: dropdown
+    id: category
+    attributes:
+      label: Feature Category
+      options:
+        - CLI commands
+        - A2A Protocol
+        - MCP Integration
+        - Agent Orchestration
+        - UI/Dashboard
+        - API/Backend
+        - Documentation
+        - Infrastructure
+        - Other
+    validations:
+      required: true
+      
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternative Solutions
+      description: What alternatives have you considered?
+    validations:
+      required: false
+      
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional Context
+      description: Screenshots, mockups, or any other context
+    validations:
+      required: false
