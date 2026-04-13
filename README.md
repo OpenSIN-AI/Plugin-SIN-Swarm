@@ -1,4 +1,4 @@
-# opencode-omoc-swarm
+# Plugin-SIN-Swarm
 
 OpenCode swarm plugin for side-by-side multi-agent workflows.
 
@@ -63,16 +63,16 @@ Copy the plugin into your project so plain `opencode` can auto-load it:
 
 ```bash
 mkdir -p .opencode/plugins
-cp /path/to/opencode-omoc-swarm/plugins/omoc-swarm.ts .opencode/plugins/omoc-swarm.ts
+cp /path/to/Plugin-SIN-Swarm/plugins/omoc-swarm.ts .opencode/plugins/omoc-swarm.ts
 ```
 
 For the side-by-side wrapper:
 
 ```bash
 mkdir -p bin
-cp /path/to/opencode-omoc-swarm/bin/oc-swarm bin/oc-swarm
-cp /path/to/opencode-omoc-swarm/templates/bin/opencode bin/opencode
-cp /path/to/opencode-omoc-swarm/templates/.envrc .envrc
+cp /path/to/Plugin-SIN-Swarm/bin/oc-swarm bin/oc-swarm
+cp /path/to/Plugin-SIN-Swarm/templates/bin/opencode bin/opencode
+cp /path/to/Plugin-SIN-Swarm/templates/.envrc .envrc
 chmod +x bin/oc-swarm bin/opencode
 direnv allow
 ```
