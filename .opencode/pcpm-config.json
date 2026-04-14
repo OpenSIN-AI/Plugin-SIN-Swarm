@@ -5,7 +5,7 @@
     "onFailure": "/Users/jeremy/dev/opencode-omoc-swarm/.opencode/hooks/pcpm-after-run.sh"
   },
   "pcpm": {
-    "brainRepoPath": "/Users/jeremy/dev/opencode-omoc-swarm",
+    "brainRepoPath": "/Users/jeremy/dev/global-brain",
     "projectId": "opencode-omoc-swarm",
     "goalId": "default-goal",
     "goalDescription": "Continue development",
